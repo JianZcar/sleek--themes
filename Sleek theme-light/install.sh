@@ -48,8 +48,7 @@ if [ "$UID" -eq "$ROOT_UID" ]; then
 
   #set theme
   prompt -i "\nSetting ${THEME_NAME} as default...\n"
-  grep "GRUB_THEME=" /etc/default/grub 2>&1 >/dev/null && sed -i '/GRUB_THEME=/d' /etc/default/grub
-  echo "GRUB_THEME=\"${THEME_DIR}/${THEME_NAME}/theme.txt\"" >> /etc/default/grub
+  echo -e 'set theme=/usr/share/grub/themes/sleek/theme.txt\nexport theme\n' | tee -a /etc/grub.d/40_custom > /dev/null
   prompt -i "\n finalizing your installation .......\n \n."
   prompt -s "\n\t          ****************************\n\t          *  successfully installed  *\n\t          ****************************\n"
 else
